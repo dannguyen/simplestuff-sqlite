@@ -8,14 +8,11 @@ The data values are meant to be simple enough so that, at a glance, you can ment
 
 ## The content
 
-**Download the database here:** 
+**Download the database:**  [simplestuff.sqlite](https://github.com/dannguyen/simplestuff-sqlite/blob/master/simplestuff.sqlite)
 
-[simplestuff.sqlite](https://github.com/dannguyen/simplestuff-sqlite/blob/master/simplestuff.sqlite)
 
-**Examples**
-
-- Hello
-
+- [GROUP BY](lessons/group-by.md)
+- [INNER JOIN basics](lessons/inner-join-basics.md)
 
 
 ## About the data
