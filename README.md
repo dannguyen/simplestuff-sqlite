@@ -6,11 +6,13 @@ An example database that is so simple that all of its contents can be printed on
 The data values are meant to be simple enough so that, at a glance, you can mentally compute that a woman named Angela owns two dogs without having to write any SQL, nevermind a JOIN query. So when you *do* learn how to write a SQL join query, you know what answer you're supposed to get.
 
 
-## The stuff
+## The content
 
-Download the database here: [simplestuff.sqlite](simplestuff.sqlite)
+**Download the database here:** 
 
-Some examples:
+[simplestuff.sqlite](https://github.com/dannguyen/simplestuff-sqlite/blob/master/simplestuff.sqlite)
+
+**Examples**
 
 - Hello
 
@@ -20,7 +22,9 @@ Some examples:
 
 The **simplestuff.sqlite** database consists of 3 relational tables: people, bios, and pets. People each have a `name` and an `id`, they have biographical information, and some of these people own pets.
 
-That's all there's to it. Why is a person's birthdate and gender in a different table -- `bios` -- rather than being columns in the `people` table -- other than to provide convenient examples for JOIN queries? Sometimes, actually most of the time, data just isn't conveniently 
+That's all there's to it. Why is a person's birthdate and gender in a different table -- `bios` -- rather than being columns in the `people` table -- other than to provide convenient examples for JOIN queries? Sometimes -- actually most of the time -- data just isn't conveniently packaged in one file, table, or even database. Knowing SQL and how to JOIN is how we get past those problems.
+
+The schema for the database, i.e. the structure of all 3 tables, can be seen in this file: [schema.sql](schema.sql)
 
 
 

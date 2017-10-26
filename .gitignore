@@ -5,6 +5,7 @@ __pycache__/
 drafts/
 # C extensions
 *.so
+drafts/
 
 # Distribution / packaging
 .Python
