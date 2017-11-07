@@ -7,7 +7,7 @@ Related reading:
 - [PADJO tutorial: SQL Left Joins](http://www.padjo.org/tutorials/database-joins/sql-left-joins/)
 - [PADJO tutorial: NULL in databases](http://www.padjo.org/tutorials/databases/sql-null/)
 - [PADJO 2015 tutorial: Using LEFT JOINs to find what's missing from one table to another](http://2015.padjo.org/tutorials/babynames-and-college-salaries/035-left-joins-and-join-practice/)
-- [Stack Overflow](What is the difference between “INNER JOIN” and “OUTER JOIN”?)
+- [Stack Overflow: What is the difference between “INNER JOIN” and “OUTER JOIN”?](https://stackoverflow.com/questions/38549/what-is-the-difference-between-inner-join-and-outer-join)
 
 
 ## LEFT vs INNER JOIN
