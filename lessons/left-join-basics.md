@@ -12,7 +12,7 @@ Related reading:
 
 ## LEFT vs INNER JOIN
 
-As we learned in [INNER JOIN basics](../lessons/inner-join-agg.md), an `INNER JOIN` returns rows from tables when the `ON` condition is **true**:
+As we learned in [INNER JOIN basics](../lessons/inner-join-basics.md), an `INNER JOIN` returns rows from tables when the `ON` condition is **true**:
 
 ~~~sql
 SELECT *
