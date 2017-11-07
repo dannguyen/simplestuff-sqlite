@@ -8,7 +8,7 @@ The JOIN functionality is pretty much the main event when it comes to learning S
 - [SQL Tutorial: Introduction to the SQL INNER JOIN clause](http://www.sqltutorial.org/sql-inner-join/)
 
 
-## Examples
+## Examples with `people ` and `bios`
 
 
 
@@ -48,6 +48,66 @@ INNER JOIN
 WHERE
   people.name = 'Angela' 
 ~~~
+
+
+
+
+
+### Join all "people" and "bios"
+
+This query is the same as above, except we leave out the `WHERE` condition. By using `SELECT *`, we are basically slapping together the columns of `people` and `bios`, side by side:
+
+
+~~~sql
+SELECT *
+FROM 
+  people
+INNER JOIN
+  bios; 
+  ON bios.id = people.id;
+~~~
+
+
+|  id |   name  |  id | birthdate  | gender |
+|-----|---------|-----|------------|--------|
+| 001 | Angela  | 001 | 1988-02-27 | F      |
+| 002 | Bill    | 002 | 1964-01-12 | M      |
+| 003 | Colby   | 003 | 1955-05-08 | M      |
+| 004 | Darlene | 004 | 1990-11-05 | F      |
+| 005 | Elliot  | 005 | 1986-09-17 | M      |
+
+Note something about the results: even though `bios` contains **6** rows, only **5** rows are returned. That's because there are only **5** possible rows in the `people` table to match against.
+
+Also, note that there are two `id` columns, confusingly named the same (because they *are* named the same in their respective tables), with the same values. Using `SELECT *` when doing JOINs is almost always a bit sloppy
+
+### Be more selective with columns
+
+Same query concept as above, just a more verbose/explicit `SELECT` clause:
+
+
+~~~sql
+SELECT 
+  people.id,
+  people.name,
+  bios.birthdate,
+  bios.gender
+FROM 
+  people
+INNER JOIN
+  bios
+  ON bios.id = people.id;
+~~~
+
+| id  | name    | birthdate  | gender |
+| --- | ------- | ---------- | ------ |
+| 001 | Angela  | 1988-02-27 | F      |
+| 002 | Bill    | 1964-01-12 | M      |
+| 003 | Colby   | 1955-05-08 | M      |
+| 004 | Darlene | 1990-11-05 | F      |
+| 005 | Elliot  | 1986-09-17 | M      |
+
+
+## Examples with `people ` and `pets`
 
 
 ### What pets does the person named "Angela" own?
@@ -186,6 +246,31 @@ INNER JOIN
 Why did I include/alias certain columns but not others? It all depends on the context...
 
 
+
+## Examples with `people`, `bios`, and `pets`
+
+
+### List pets.owner_id, people.name, bios.gender, pets.name, pets.species
+
+This is a INNER JOIN between 3 tables. Syntax structure is the same order as before:
+
+
+~~~sql
+| owner_id | owner_name | owner_gender | pet_name | species |
+| -------- | ---------- | ------------ | -------- | ------- |
+| 001      | Angela     | F            | Einstein | dog     |
+| 001      | Angela     | F            | Olly     | cat     |
+| 005      | Elliot     | M            | Flipper  | dog     |
+| 004      | Darlene    | F            | Shaggy   | dog     |
+| 002      | Bill       | M            | Garfield | cat     |
+| 005      | Elliot     | M            | Qwerty   | fish    |
+| 002      | Bill       | M            | Pounce   | cat     |
+| 002      | Bill       | M            | Timba    | cat     |
+~~~
+
+
+<!-- 
+
 ## Purposeful errors
 
 Very common and sometimes catastrophic errors. Let's make them on purpose:
@@ -194,7 +279,7 @@ Very common and sometimes catastrophic errors. Let's make them on purpose:
 - Joining by the incorrect conditions
 - Getting confused by which boolean expressions should be in `JOIN` vs. `WHERE`
 - Referring to columns of a table that you aren't actually joining
-
+ -->
 
 
 <!-- 

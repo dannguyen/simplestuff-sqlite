@@ -13,6 +13,7 @@ The data values are meant to be simple enough so that, at a glance, you can ment
 
 - [GROUP BY](lessons/group-by.md)
 - [INNER JOIN basics](lessons/inner-join-basics.md)
+- [LEFT JOIN basics](lessons/left-join-basics.md)
 
 
 ## About the data
