@@ -1,24 +1,15 @@
-DB_NAME='simplestuff.sqlite'
+DB_NAME='db/simplestuff.sqlite'
 
-sqlite3 $DB_NAME < schema.sql
+sqlite3 $DB_NAME < db/schema.sql
 
-
-csvsql --db sqlite:///${DB_NAME} \
-       --no-create --insert \
-       --no-inference \
-       --tables people \
-       data/people.csv
-
-
-csvsql --db sqlite:///${DB_NAME} \
-       --no-create --insert \
-       --no-inference \
-       --tables pets \
-       data/pets.csv
+for tbl in people pets bios; do
+  echo "Inserting data for $tbl"
+  csvsql --db sqlite:///${DB_NAME} \
+         --no-create --insert \
+         --no-inference \
+         --tables ${tbl} \
+         data/${tbl}.csv
+done
 
 
-csvsql --db sqlite:///${DB_NAME} \
-       --no-create --insert \
-       --no-inference \
-       --tables bios \
-       data/bios.csv
+

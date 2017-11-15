@@ -37,7 +37,7 @@ SELECT * FROM people;
 | --- | ------- |
 | 001 | Angela  |
 | 002 | Bill    |
-| 003 | Colby   |
+| 003 | Carla   |
 | 004 | Darlene |
 | 005 | Elliot  |
 
@@ -58,16 +58,18 @@ SELECT * FROM bios;
 | --- | ---------- | ------ |
 | 001 | 1988-02-27 | F      |
 | 002 | 1964-01-12 | M      |
-| 003 | 1955-05-08 | M      |
+| 003 | 1975-05-08 | F      |
 | 004 | 1990-11-05 | F      |
 | 005 | 1986-09-17 | M      |
 | 424 | 1991-07-23 | F      |
 
 The `bios` table is connected to `people` via the `id` column.
 
-The biographical records have a one-to-one relationship with people, i.e. at a given point in time, each person has one, and only one birthdate and gender.
+The biographical records have a *one-to-one relationship with the **people**. In other words, at any given point in time, each person has one, and only one birthdate and gender.
 
-However, that doesn't mean that all records in `bios` have a corresponding person, which you can probably eyeball as no record in `people` has an `id` of `'424'`. Mismatches like this happen all the time in real-world databases.
+However, this doesn't necessarily mean that *all* records in `bios` have a corresponding person. You can eyeball the last record in `bios` having an outlier value (`424`) for `id` with no corresponding `id` in  `people`.
+
+In real-life databases, mismatches like this happen all the time. 
 
 
 ### pets
@@ -76,22 +78,32 @@ However, that doesn't mean that all records in `bios` have a corresponding perso
 SELECT * FROM pets;
 ~~~
 
-| owner_id | name     | species | purchase_date | purchase_price |
-| -------- | -------- | ------- | ------------- | -------------- |
-| 001      | Einstein | dog     | 2006-10-21    | 25.0           |
-| 001      | Olly     | cat     | 2012-03-12    | 15.0           |
-| 005      | Flipper  | dog     | 2014-05-09    | 25.75          |
-| 004      | Shaggy   | dog     | 1997-12-15    | 42.0           |
-| 002      | Garfield | cat     | 1990-01-03    | 20.5           |
-| 005      | Qwerty   | fish    | 2012-03-12    | 5.0            |
-| 002      | Pounce   | cat     | 2001-04-17    | 30.0           |
-| 002      | Timba    | cat     | 2015-11-24    | 25.0           |
 
+| name     | species | purchase_date | price | owner_id |
+| -------- | ------- | ------------- | ----- | -------- |
+| Einstein | dog     | 2006-10-21    | 25.0  | 001      |
+| Olly     | cat     | 2012-03-12    | 15.0  | 001      |
+| Flipper  | dog     | 2014-05-09    | NULL  | 005      |
+| Shaggy   | dog     | 1997-12-15    | 42.0  | 004      |
+| Garfield | cat     | 1990-01-03    | 20.5  | 002      |
+| Qwerty   | fish    | 2012-03-12    | 5.0   | 005      |
+| Pounce   | cat     | 2001-04-17    | 30.0  | 002      |
+| Timba    | cat     | 2015-11-24    | 25.0  | 002      |
 
-The `pets` table, like `bios`, is connected to `people` via the `people.id` field. However, unlike `bios`, the linking column -- aka the *foreign key* column -- is not named `id` but `owner_id`.
+The `pets` table, like `bios`, is connected to `people` using the `people.id` field. However, unlike `bios`, the linking column -- also known as the *foreign key* column -- is not named `id` but `owner_id`.
 
-Also unlike `bios`, `pets` has a many-to-one relationship to `people`. Some people own one pet, some own multiple, and some own none. Though if you think about it, pets and people in the real world could be a many-to-many relationship, i.e. a dog having more than one owner. But the `simplestuff.sqlite` database exists in a very simple world.
+Also, unlike `bios`, `pets` has a **many-to-one** relationship to `people`. A person may own a single pet, in which case it seems like a one-to-one relationship. But another person may own *many* pets. Or *none* at all. 
 
+Note that in the real world, the relationship between people and pets is actually **many-to-many**: Not only can a person have many pets, but a pet may have many owners. But `simplestuff.sqlite` doesn't attempt to model the real world, just a simple one.
 
+One more thing to note: The `price` value for the pet named 'Flipper' is listed as `NULL`:
 
+```
+| name     | species | purchase_date | price | owner_id |
+| -------- | ------- | ------------- | ----- | -------- |
+...
+| Flipper  | dog     | 2014-05-09    | NULL  | 005      |
+...
+```
 
+That is not intended to be a string literal, i.e. to be quoted as in the case of `'Flipper'` and `'dog'` -- but the special value of `NULL`, which is used in SQL to represent *non-existence*. This is not the same as `0` or a blank/empty string. We can think of Flipper as not having been paid for, rather than having been acquired for free or for an unknown value.s

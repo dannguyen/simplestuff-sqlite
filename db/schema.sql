@@ -16,10 +16,10 @@ CREATE TABLE bios(
 
 
 CREATE TABLE pets(
-    owner_id TEXT,
     name TEXT,
     species TEXT,
     purchase_date TEXT,
-    purchase_price REAL
+    price REAL,
+    owner_id TEXT
 );
 
