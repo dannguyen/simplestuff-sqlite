@@ -24,7 +24,7 @@ That's all there's to it. Why is a person's birthdate and gender in a different 
 
 The schema for the database, i.e. the structure of all 3 tables, can be seen in this file: [schema.sql](schema.sql)
 
-
+------------
 
 ### people
 
@@ -45,6 +45,8 @@ Pretty straightforward table of "people". Although real people usually have last
 
 And it's worth pointing out that the `id` field is **not** a number, but a text string. 
 
+
+---------
 
 
 ### bios
@@ -69,8 +71,10 @@ The biographical records have a *one-to-one relationship with the **people**. In
 
 However, this doesn't necessarily mean that *all* records in `bios` have a corresponding person. You can eyeball the last record in `bios` having an outlier value (`424`) for `id` with no corresponding `id` in  `people`.
 
-In real-life databases, mismatches like this happen all the time. 
+In real-life databases, these kind of mismatches are not uncommon. Think of deleting a record from one table and forgetting to delete its corresponding related record from the other table. 
 
+
+----------
 
 ### pets
 
